@@ -18,6 +18,8 @@
             <class name="testAmazon.SearchIteams"/>
             <class name="testAmazon.Categories"/>
             <class name="testAmazon.TVMovies"/>
+            <class name="testAmazon.InstrumentsMusical"/>
+            <class name="testAmazon.OfficeProductsCategories"/>
         </classes>
     </test>
 </suite>
