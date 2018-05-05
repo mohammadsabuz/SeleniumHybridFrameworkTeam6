@@ -97,8 +97,8 @@ public class CommonAPI {
     @BeforeMethod
     public void setUp(boolean useCloudEnv,String cloudEnvName,
                       String os,String os_version, String browserName,
-                              String browserVersion, String url)throws IOException {
-      //  System.setProperty("webdriver.chrome.driver", "/Users/peoplentech/eclipse-workspace-March2018/SeleniumProject1/driver/chromedriver");
+                      String browserVersion, String url)throws IOException {
+        //  System.setProperty("webdriver.chrome.driver", "/Users/peoplentech/eclipse-workspace-March2018/SeleniumProject1/driver/chromedriver");
         if(useCloudEnv==true){
             if(cloudEnvName.equalsIgnoreCase("browserstack")) {
                 getCloudDriver(cloudEnvName,browserstack_username,browserstack_accesskey,os,os_version, browserName, browserVersion);
@@ -160,7 +160,7 @@ public class CommonAPI {
     public void afterMethod() {
         driver.quit();
     }
-//-------
+    //-------
     public void clickOnCss(String locator){
         driver.findElement(By.cssSelector(locator)).click();
     }
