@@ -24,7 +24,7 @@ import java.util.List;
 public class GoogleSheetReader {
     private static final String APPLICATION_NAME = "TeamX-Web-Auto";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final String CREDENTIALS_FOLDER = "credentials"; // Directory to store user credentials.
+    private static final String CREDENTIALS_FOLDER = "src/main/credentials"; // Directory to store user credentials.
 
     /**
      * Global instance of the scopes required by this quickstart.

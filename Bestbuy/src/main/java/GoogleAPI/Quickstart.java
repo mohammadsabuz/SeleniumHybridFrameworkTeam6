@@ -63,8 +63,7 @@ public class Quickstart {
      */
     public static Credential authorize() throws IOException {
 // Load client secrets.
-        InputStream in =
-                Quickstart.class.getResourceAsStream("C:\\Users\\apoor\\IdeaProjects\\SeleniumHybridFrameworkTeam6\\Bestbuy\\src\\main\\java\\credentials\\client_secret.json");
+        InputStream in = Quickstart.class.getResourceAsStream("/client_secret.json");
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
@@ -99,7 +98,7 @@ public class Quickstart {
 
 // Prints the names and majors of students in a sample spreadsheet:
 // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-        String spreadsheetId = "1_2LIIZjd5_a9TCho_kE1pXW8iJrzdJQAX4sUrpvsqqU";
+        String spreadsheetId = "1UStsPF2ACDAfPzWwV1j8A05sqUdso-vXrcZmTm2lNpQ";
         String range = "Class Data!A2:E";
         ValueRange response = service.spreadsheets().values()
                 .get(spreadsheetId, range)
