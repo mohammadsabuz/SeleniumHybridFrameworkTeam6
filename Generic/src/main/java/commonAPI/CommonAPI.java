@@ -121,8 +121,8 @@ public class CommonAPI {
     @BeforeMethod
     public void before(){
         //windows Chrome
-        System.setProperty("webdriver.chrome.driver", "../Generic/browser-driver/chromedriver.exe");
-        wChromeDriver = new ChromeDriver();
+      //  System.setProperty("webdriver.chrome.driver", "../Generic/browser-driver/chromedriver.exe");
+       // wChromeDriver = new ChromeDriver();
 
 //        //windows Gecko
         System.setProperty("webdriver.gecko.driver", "../Generic/browser-driver/geckodriver.exe");
