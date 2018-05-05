@@ -1,5 +1,4 @@
 package base;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
@@ -17,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import reporting.ApplicationLog;
 import reporting.ExtentManager;
 import reporting.ExtentTestManager;
 
@@ -68,7 +68,6 @@ public class CommonAPI {
         for (String group : result.getMethod().getGroups()) {
             ExtentTestManager.getTest().assignCategory(group);
         }
-
         if (result.getStatus() == 1) {
             ExtentTestManager.getTest().log(LogStatus.PASS, "Test Passed");
         } else if (result.getStatus() == 2) {
@@ -81,7 +80,7 @@ public class CommonAPI {
         if (result.getStatus() == ITestResult.FAILURE) {
             captureScreenshot(driver, result.getName());
         }
-        //driver.quit();
+        driver.quit();
     }
     @AfterSuite
     public void generateReport() {
@@ -96,10 +95,10 @@ public class CommonAPI {
 
     @Parameters({"useCloudEnv","cloudEnvName","os","os_version","browserName","browserVersion","url"})
     @BeforeMethod
-    public void setUp(@Optional("false") boolean useCloudEnv, @Optional("false")String cloudEnvName,
-                      @Optional("OS X") String os,@Optional("10") String os_version, @Optional("firefox") String browserName, @Optional("34")
-                              String browserVersion, @Optional("http://www.amazon.com") String url)throws IOException {
-        System.setProperty("webdriver.chrome.driver", "/Users/peoplentech/eclipse-workspace-March2018/SeleniumProject1/driver/chromedriver");
+    public void setUp(boolean useCloudEnv,String cloudEnvName,
+                      String os,String os_version, String browserName,
+                      String browserVersion, String url)throws IOException {
+        //  System.setProperty("webdriver.chrome.driver", "/Users/peoplentech/eclipse-workspace-March2018/SeleniumProject1/driver/chromedriver");
         if(useCloudEnv==true){
             if(cloudEnvName.equalsIgnoreCase("browserstack")) {
                 getCloudDriver(cloudEnvName,browserstack_username,browserstack_accesskey,os,os_version, browserName, browserVersion);
@@ -114,7 +113,7 @@ public class CommonAPI {
         driver.get(url);
         driver.manage().window().maximize();
     }
-    public WebDriver getLocalDriver(@Optional("mac") String OS, String browserName){
+    public WebDriver getLocalDriver(String OS, String browserName){
         if(browserName.equalsIgnoreCase("chrome")){
             if(OS.equalsIgnoreCase("OS X")){
                 System.setProperty("webdriver.chrome.driver", "../Generic/browser-driver/chromedriver");
@@ -135,9 +134,7 @@ public class CommonAPI {
             driver = new InternetExplorerDriver();
         }
         return driver;
-
     }
-
 
     public WebDriver getCloudDriver(String envName,String envUsername, String envAccessKey,String os, String os_version,String browserName,
                                     String browserVersion)throws IOException {
@@ -161,9 +158,9 @@ public class CommonAPI {
 
     @AfterMethod
     public void afterMethod() {
-        //driver.quit();
+        driver.quit();
     }
-
+    //-------
     public void clickOnCss(String locator){
         driver.findElement(By.cssSelector(locator)).click();
     }
@@ -188,37 +185,19 @@ public class CommonAPI {
             driver.findElement(By.id(locator)).sendKeys(value);
         }
     }
-    public void clickByLinktext(String locator) {
-        driver.findElement(By.linkText(locator)).click();
-    }
-
-    public void clickByName(String locator) {
-        driver.findElement(By.name(locator)).click();
-    }
-    public void clickById(String locator) {
-        driver.findElement(By.id(locator)).click();
-    }
-    public void cssSelector(String locator) {
-        driver.findElement(By.cssSelector(locator)).click();
-    }
-
 
     public void clickByXpath(String locator) {
         driver.findElement(By.xpath(locator)).click();
     }
-
     public void typeByCss(String locator, String value) {
         driver.findElement(By.cssSelector(locator)).sendKeys(value);
     }
     public void typeByCssNEnter(String locator, String value) {
         driver.findElement(By.cssSelector(locator)).sendKeys(value, Keys.ENTER);
     }
+
     public void typeByXpath(String locator, String value) {
         driver.findElement(By.xpath(locator)).sendKeys(value);
-    }
-
-    public void typeByXpathNEnter(String locator, String value) {
-        driver.findElement(By.xpath(locator)).sendKeys(value, Keys.ENTER);
     }
 
     public void takeEnterKeys(String locator) {
@@ -241,7 +220,6 @@ public class CommonAPI {
             String st = web.getText();
             text.add(st);
         }
-
         return text;
     }
     public List<WebElement> getListOfWebElementsByCss(String locator) {
@@ -305,9 +283,7 @@ public class CommonAPI {
             WebElement element = driver.findElement(By.cssSelector(locator));
             Actions action = new Actions(driver);
             action.moveToElement(element).perform();
-
         }
-
     }
     public void mouseHoverByXpath(String locator){
         try {
@@ -319,9 +295,7 @@ public class CommonAPI {
             WebElement element = driver.findElement(By.cssSelector(locator));
             Actions action = new Actions(driver);
             action.moveToElement(element).perform();
-
         }
-
     }
     //handling Alert
     public void okAlert(){
@@ -359,7 +333,6 @@ public class CommonAPI {
         } catch (Exception e) {
             System.out.println("Exception while taking screenshot "+e.getMessage());;
         }
-
     }
     //Taking Screen shots
     public void takeScreenShot()throws IOException {
@@ -408,5 +381,4 @@ public class CommonAPI {
         boolean value = driver1.findElement(By.cssSelector(locator)).isDisplayed();
         return value;
     }
-
 }

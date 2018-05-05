@@ -7,6 +7,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.seleniumhq.jetty9.server.Authentication;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,14 +31,15 @@ public class ConnectDB {
     public static PreparedStatement ps = null;
     public static ResultSet resultSet = null;
 
-    public Properties loadProperties() throws IOException{
+    public static Properties loadProperties() throws IOException{
         Properties prop = new Properties();
-        InputStream ism = new FileInputStream("../Generic/databaseinfo/secret.properties");
+
+        InputStream ism = new FileInputStream("C:\\Users\\apoor\\IdeaProjects\\SeleniumHybridFrameworkTeam6\\Generic\\src\\main\\java\\databaseinfo\\secret.properties");
         prop.load(ism);
         ism.close();
         return prop;
     }
-    public Connection connectToMySql() throws IOException, SQLException, ClassNotFoundException {
+    public static Connection connectToMySql() throws IOException, SQLException, ClassNotFoundException {
         Properties prop = loadProperties();
         String driverClass = prop.getProperty("MYSQLJDBC.driver");
         String url = prop.getProperty("MYSQLJDBC.url");
@@ -55,7 +57,7 @@ public class ConnectDB {
 
         return mongoDatabase;
     }
-    public List<String> readDataBase(String tableName, String columnName)throws Exception{
+    public static List<String> readDataBase(String tableName, String columnName)throws Exception{
         List<String> data = new ArrayList<String>();
 
         try {
@@ -70,7 +72,7 @@ public class ConnectDB {
         }
         return data;
     }
-    private void close() {
+    private static void close() {
         try{
             if(resultSet != null){
                 resultSet.close();
@@ -85,7 +87,7 @@ public class ConnectDB {
 
         }
     }
-    private List<String> getResultSetData(ResultSet resultSet2, String columnName) throws SQLException {
+    private static List<String> getResultSetData(ResultSet resultSet2, String columnName) throws SQLException {
         List<String> dataList = new ArrayList<String>();
         while(resultSet.next()){
             String itemName = resultSet.getString(columnName);
@@ -117,7 +119,7 @@ public class ConnectDB {
         }
     }
 
-    public void insertDataFromStringToMySql(String ArrayData,String tableName, String columnName)
+    public static void insertDataFromStringToMySql(String ArrayData, String tableName, String columnName)
     {
         try {
             connectToMySql();
@@ -133,7 +135,7 @@ public class ConnectDB {
         }
     }
 
-    public List<String> directDatabaseQueryExecute(String passQuery,String dataColumn)throws Exception{
+    public static List<String> directDatabaseQueryExecute(String passQuery,String dataColumn)throws Exception{
         List<String> data = new ArrayList<String>();
 
         try {
@@ -149,7 +151,7 @@ public class ConnectDB {
         return data;
     }
 
-    public void insertDataFromArrayListToMySql(List<String> list, String tableName, String columnName)
+    public static void insertDataFromArrayListToMySql(List <String> list, String tableName, String columnName)
     {
         try {
             connectToMySql();
@@ -219,17 +221,19 @@ public class ConnectDB {
         return list;
     }
 
+
+
     public static void main(String[] args)throws IOException, SQLException, ClassNotFoundException {
 
-    	/*
-        insertProfileToMySql("profile","name", "id");
-        List<User> list = readFromMySql();
-        for(User user:list){
+
+      /*  insertProfileToMySql("profile","name", "id");
+        List<Authentication.User> list = readFromMySql();
+        for(Authentication.User user:list){
             System.out.println(user.getName()+ " " + user.getId());
         }
-        String message = insertToMongoDB(new User("Tanima Chowdhury", 3539));
-        List<User> user = readFromMongoDB();
-        */
+        String message = insertToMongoDB(new Authentication.User("Tanima Chowdhury", 3539));
+        List<Authentication.User> user = readFromMongoDB(); */
+
 
     }
 
