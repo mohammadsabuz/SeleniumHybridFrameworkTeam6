@@ -1,6 +1,4 @@
 package base;
-
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
@@ -70,7 +68,6 @@ public class CommonAPI {
         for (String group : result.getMethod().getGroups()) {
             ExtentTestManager.getTest().assignCategory(group);
         }
-
         if (result.getStatus() == 1) {
             ExtentTestManager.getTest().log(LogStatus.PASS, "Test Passed");
         } else if (result.getStatus() == 2) {
@@ -137,9 +134,7 @@ public class CommonAPI {
             driver = new InternetExplorerDriver();
         }
         return driver;
-
     }
-
 
     public WebDriver getCloudDriver(String envName,String envUsername, String envAccessKey,String os, String os_version,String browserName,
                                     String browserVersion)throws IOException {
@@ -189,7 +184,6 @@ public class CommonAPI {
         }catch (Exception ex){
             driver.findElement(By.id(locator)).sendKeys(value);
         }
-
     }
 
     public void clickByXpath(String locator) {
@@ -226,7 +220,6 @@ public class CommonAPI {
             String st = web.getText();
             text.add(st);
         }
-
         return text;
     }
     public List<WebElement> getListOfWebElementsByCss(String locator) {
@@ -290,9 +283,7 @@ public class CommonAPI {
             WebElement element = driver.findElement(By.cssSelector(locator));
             Actions action = new Actions(driver);
             action.moveToElement(element).perform();
-
         }
-
     }
     public void mouseHoverByXpath(String locator){
         try {
@@ -304,9 +295,7 @@ public class CommonAPI {
             WebElement element = driver.findElement(By.cssSelector(locator));
             Actions action = new Actions(driver);
             action.moveToElement(element).perform();
-
         }
-
     }
     //handling Alert
     public void okAlert(){
@@ -344,7 +333,6 @@ public class CommonAPI {
         } catch (Exception e) {
             System.out.println("Exception while taking screenshot "+e.getMessage());;
         }
-
     }
     //Taking Screen shots
     public void takeScreenShot()throws IOException {
@@ -393,5 +381,4 @@ public class CommonAPI {
         boolean value = driver1.findElement(By.cssSelector(locator)).isDisplayed();
         return value;
     }
-
 }
