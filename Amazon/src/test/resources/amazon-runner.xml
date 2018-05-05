@@ -14,6 +14,8 @@
     <test name = "Amazon">
         <classes>
             <class name="testAmazon.LoginAmazon"/>
+            <class name="testAmazon.SearchBar"/>
+            <class name="testAmazon.SearchIteams"/>
         </classes>
     </test>
 </suite>

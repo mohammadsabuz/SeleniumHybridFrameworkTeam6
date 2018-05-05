@@ -11,9 +11,11 @@
     <parameter name="browserVersion" value="53.0"/>
     <parameter name="url" value="https://www.amazon.com"/>
 
-    <test name = "eBay Home">
+    <test name = "Amazon">
         <classes>
             <class name="testAmazon.LoginAmazon"/>
+            <class name="testAmazon.SearchBar"/>
+            <class name="testAmazon.SearchIteams"/>
         </classes>
     </test>
 </suite>
