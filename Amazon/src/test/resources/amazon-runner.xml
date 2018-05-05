@@ -16,6 +16,8 @@
             <class name="testAmazon.LoginAmazon"/>
             <class name="testAmazon.SearchBar"/>
             <class name="testAmazon.SearchIteams"/>
+            <class name="testAmazon.Categories"/>
+            <class name="testAmazon.TVMovies"/>
         </classes>
     </test>
 </suite>
