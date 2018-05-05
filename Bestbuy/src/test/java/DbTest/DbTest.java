@@ -16,7 +16,7 @@ import java.util.List;
 
 
 public class DbTest extends CommonAPI {
-    String SearchItem = "laundry";
+    String SearchItem = "iphone";
     WebElement search;
     @BeforeTest
     public void dbConnection() throws SQLException, IOException, ClassNotFoundException {
