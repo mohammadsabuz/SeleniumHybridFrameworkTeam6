@@ -7,6 +7,6 @@ public class LoginAmazon extends LoginToAmazon{
 
     @Test
     public void loginAmazon(){
-        loginAmazon();
+        mainAmazonLogin();
     }
 }
