@@ -91,8 +91,6 @@ public class CommonAPI {
         calendar.setTimeInMillis(millis);
         return calendar.getTime();
     }
-
-
     @Parameters({"useCloudEnv","cloudEnvName","os","os_version","browserName","browserVersion","url"})
     @BeforeMethod
     public void setUp(boolean useCloudEnv,String cloudEnvName,
@@ -297,6 +295,7 @@ public class CommonAPI {
             action.moveToElement(element).perform();
         }
     }
+
     //handling Alert
     public void okAlert(){
         Alert alert = driver.switchTo().alert();
